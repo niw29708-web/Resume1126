@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>個人履歷表 — [姓名]</title>
+    <meta name="author" content="[你的名字]" />
+    <style>
+        :root {
+            --bg: #f6f7fb;
+            --card: #ffffff;
+            --accent: #2b6cb0;
+            --muted: #6b7280;
+            --glass: rgba(255, 255, 255, 0.6);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0b1020;
+            --card: #0f1724;
+            --accent: #60a5fa;
+            --muted: #9ca3af;
+            --glass: rgba(255, 255, 255, 0.03);
+            color: #e6eef8
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            margin: 0;
+            background: linear-gradient(180deg, var(--bg), #fff);
+            padding: 24px;
+            color: #0b1220
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 14px;
+            box-shadow: 0 6px 24px rgba(11, 18, 32, 0.06);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 280px 1fr
+        }
+
+        header {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            padding: 24px
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, var(--glass), transparent);
+            padding: 24px
+        }
+
+        .photo {
+            width: 110px;
+            height: 110px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--accent), #5eead4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 24px
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px
+        }
+
+        .role {
+            color: var(--muted);
+            margin-top: 6px
+        }
+
+        .section {
+            padding: 20px 24px;
+            border-top: 1px solid rgba(0, 0, 0, 0.04)
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        .contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 14px
+        }
+
+        .skill {
+            margin-bottom: 12px
+        }
+
+        .skill .bar {
+            height: 8px;
+            background: #e6eef8;
+            border-radius: 999px;
+            overflow: hidden
+        }
+
+        .skill .pct {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent), #34d399);
+            width: 60%
+        }
+
+        .content {
+            padding: 24px
+        }
+
+        .flex {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .timeline-item {
+            padding: 12px;
+            border-radius: 8px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), transparent)
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            margin-left: auto
+        }
+
+        button {
+            border: 0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: var(--accent);
+            color: white;
+            cursor: pointer
+        }
+
+        button.ghost {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid rgba(11, 18, 32, 0.06)
+        }
+
+        footer {
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--muted)
+        }
+
+        @media (max-width:880px) {
+            .card {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: 2
+            }
+
+            .content {
+                order: 1
+            }
+
+            .photo {
+                margin-bottom: 12px
+            }
+        }
+
+        /* print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0
+            }
+
+            .controls,
+            .theme-toggle {
+                display: none
+            }
+
+            .card {
+                box-shadow: none;
+                border-radius: 0;
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body data-theme="light">
+    <div class="container">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+            <h2 style="margin:0">個人履歷表（HTML 範本）</h2>
+            <div class="controls">
+                <button id="printBtn">列印 / 另存 PDF</button>
+                <button id="themeBtn" class="ghost">深色/淺色</button>
+            </div>
+        </div>
+
+        <article class="card" id="resume">
+            <aside class="sidebar">
+                <div style="display:flex;gap:12px;align-items:center">
+                    <div class="photo" id="avatar">你
+                    </div>
+                    <div>
+                        <h1 id="name">詹芷綺</h1>
+                        <div class="role">亞洲大學 經營管理系 • 學士在學</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="muted">聯絡資訊</div>
+                    <div class="contact" style="margin-top:8px">
+                        <div>Email: <a href="mailto:niw29708@gmail.com">niw29708@gmail.com</a></div>
+
+                        <div>LinkedIn: /in/yourname</div>
+                        <div>Github: github.com/yourname</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="muted">技能</div>
+                    <div style="margin-top:12px">
+                        <div class="skill">
+                            <div class="muted">資料分析</div>
+                            <div class="bar">
+                                <div class="pct" style="width:75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="muted">程式 (Python / C#)</div>
+                            <div class="bar">
+                                <div class="pct" style="width:60%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="muted">簡報與報告</div>
+                            <div class="bar">
+                                <div class="pct" style="width:80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="muted">語言</div>
+                    <div style="margin-top:8px">
+                        <div class="muted">中文（母語）</div>
+                        <div class="muted">英文（TOEIC/學校成績）</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="muted">證照 / 獎項</div>
+                    <ul style="margin:8px 0 0 18px;padding:0;color:var(--muted)">
+                        <li>2024 校內優秀學生獎</li>
+                        <li>資料分析競賽 - 第二名</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="content">
+                <header style="display:flex;align-items:flex-start;gap:12px">
+                    <div style="flex:1">
+                        <h2 style="margin:0">個人簡介</h2>
+                        <p class="muted" style="margin-top:8px">我是亞洲大學經管系學生，專注於資料分析與商業應用。熱衷參與專題與實務專案，擅長用數據說故事與製作簡潔報告。
+                        </p>
+                    </div>
+                </header>
+
+                <section class="section">
+                    <h3 style="margin:0">教育背景</h3>
+                    <div style="margin-top:12px" class="timeline">
+                        <div class="timeline-item">
+                            <div class="flex"><strong>亞洲大學 — 經營管理系</strong><span class="muted"
+                                    style="margin-left:auto">2022 - 現在（在學）</span></div>
+                            <div class="muted" style="margin-top:6px">主修：管理學 / 選修：資料分析、企業策略</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="flex"><strong>草屯商工</strong><span class="muted" style="margin-left:auto">2019 -
+                                    2021</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h3 style="margin:0">實習與專案經驗</h3>
+                    <div style="margin-top:12px" class="timeline">
+                        <div class="timeline-item">
+                            <div class="flex"><strong>資料分析實習 — 公司A</strong><span class="muted"
+                                    style="margin-left:auto">2024/7 - 2024/9</span></div>
+                            <div class="muted" style="margin-top:6px">負責資料清理、儀表板製作，並協助做行銷成效分析。使用工具：Excel、Python、Tableau。
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="flex"><strong>校內專題：消費者行為分析</strong><span class="muted"
+                                    style="margin-left:auto">2023/9 - 2024/6</span></div>
+                            <div class="muted" style="margin-top:6px">以問卷與交易資料建模，提出行銷建議並製作報告與海報。</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section two-col">
+                    <div>
+                        <h3 style="margin:0">課外活動</h3>
+                        <ul style="margin:12px 0 0 18px;color:var(--muted)">
+                            <li>學生會財務部 — 部員（2023）</li>
+                            <li>經營管理系專題社 — 組長（2024）</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="margin:0">程式 / 工具</h3>
+                        <ul style="margin:12px 0 0 18px;color:var(--muted)">
+                            <li>Excel (樞紐分析 / VBA)</li>
+                            <li>Python (pandas, matplotlib)</li>
+                            <li>C# (Windows Forms 基礎)</li>
+                            <li>Tableau / PowerBI</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h3 style="margin:0">作品連結</h3>
+                    <div style="margin-top:12px;color:var(--muted)">
+                        <ol style="margin:6px 0 0 18px">
+                            <li><a href="#">消費者行為分析報告（PDF）</a></li>
+                            <li><a href="#">GitHub: 個人專案</a></li>
+                        </ol>
+                    </div>
+                </section>
+
+                <footer>
+                    <div class="muted"></small>
+                    </div>
+                </footer>
+            </main>
+        </article>
+    </div>
+
+    <script>
+        // Interactivity: theme toggle + print
+        const themeBtn = document.getElementById('themeBtn');
+        const printBtn = document.getElementById('printBtn');
+        const body = document.body;
+
+        themeBtn.addEventListener('click', () => {
+            const cur = body.getAttribute('data-theme');
+            body.setAttribute('data-theme', cur === 'light' ? 'dark' : 'light');
+        });
+
+        printBtn.addEventListener('click', () => { window.print(); });
+
+        // Small helper: allow quick content editing (for demo)
+        // Double-click any text to edit in-place; press Enter to save
+        document.addEventListener('dblclick', (e) => {
+            const target = e.target;
+            if (target.matches('h1, h2, h3, p, div, li, strong')) {
+                const prev = target.textContent;
+                const input = document.createElement('input');
+                input.value = prev;
+                input.style.width = '100%';
+                target.replaceWith(input);
+                input.focus();
+                input.addEventListener('keydown', ev => {
+                    if (ev.key === 'Enter') {
+                        const span = document.createElement(target.tagName.toLowerCase());
+                        span.innerHTML = input.value;
+                        input.replaceWith(span);
+                    }
+                });
+                input.addEventListener('blur', () => {
+                    const span = document.createElement(target.tagName.toLowerCase());
+                    span.innerHTML = input.value;
+                    input.replaceWith(span);
+                });
+            }
+        });
+
+        // Set avatar initials from name
+        const nameEl = document.getElementById('name');
+        const avatar = document.getElementById('avatar');
+        function updateAvatar() {
+            const txt = nameEl.textContent.trim();
+            const parts = txt.split(/[\s]/).filter(Boolean);
+            let initials = parts.length ? parts.map(p => p[0]).slice(0, 2).join('') : '你';
+            avatar.textContent = initials.toUpperCase();
+        }
+        nameEl.addEventListener('blur', updateAvatar);
+        updateAvatar();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <button onclick="downloadPDF()"
+        style="position:fixed; bottom:20px; right:20px; padding:10px 20px; background:#4a90e2; color:white; border:none; border-radius:8px; cursor:pointer;">下載
+        PDF</button>
+
+    <script>
+        function downloadPDF() {
+            const element = document.body;
+            const opt = {
+                margin: 0.5,
+                filename: 'resume.pdf',
+                pagebreak: { mode: ['css', 'legacy'] },
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+
+</html>
