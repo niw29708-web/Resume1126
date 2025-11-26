@@ -25,7 +25,7 @@
             background-color: #fff;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: relative;
-            /* 讓子元素的絕對定位相對它 */
+            /* 讓子元素的定位相對它 */
         }
 
         h1 {
@@ -33,6 +33,10 @@
             border-bottom: 3px solid #4a90e2;
             padding-bottom: 10px;
             margin-bottom: 5px;
+            display: inline-block;
+            /* 讓 h1 寬度只包住內容，方便圖片並排 */
+            vertical-align: middle;
+            /* 讓 h1 和圖片在同一行居中對齊 */
         }
 
         h2 {
@@ -52,29 +56,39 @@
             margin-bottom: 10px;
         }
 
+        .header-content {
+            display: flex;
+            /* 使用 Flexbox 布局 */
+            align-items: center;
+            /* 垂直居中對齊 */
+            gap: 20px;
+            /* 元素之間的間距 */
+            margin-bottom: 20px;
+        }
+
+        .header-info {
+            flex-grow: 1;
+            /* 讓個人資訊區塊盡量佔據剩餘空間 */
+        }
+
         /* ------------------------------------------------- */
-        /* === 照片 (頭像) 樣式 - 新增部分 === */
+        /* === 照片 (頭像) 樣式 - 已修改為正方形 === */
         /* ------------------------------------------------- */
         #profile-pic {
             /* 圖片來源為 avatar.jpg，請確保檔案存在且檔名正確 */
-            /* 設定照片為圓形 */
-            border-radius: 50%;
-            /* 設定固定大小 */
-            width: 150px;
-            height: 150px;
-            /* 確保照片填滿區域且不被拉伸 */
+            /* 設定為正方形 */
+            width: 120px;
+            /* 寬度 */
+            height: 120px;
+            /* 高度 */
+            /* 確保照片填滿容器且不變形 */
             object-fit: cover;
-
-            /* 設定照片在頁面上的位置 (定位在右上角) */
-            position: absolute;
-            /* 使用絕對定位 */
-            top: 40px;
-            /* 距離容器頂部 */
-            right: 30px;
-            /* 距離容器右側 */
-            z-index: 10;
-            /* 確保照片在其他元素上方 */
-            border: 3px solid #4a90e2;
+            /* 輕微圓角，更柔和 */
+            border-radius: 8px;
+            border: 2px solid #4a90e2;
+            /* 邊框 */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            /* 輕微陰影 */
         }
 
         /* ================================================= */
@@ -100,9 +114,13 @@
 
             /* 確保內容在同一頁輸出 */
             .section {
-                /* 確保不會強制換頁，以達到資料都在同一頁的需求 */
                 page-break-after: auto !important;
                 page-break-before: auto !important;
+            }
+
+            /* 列印時移除 Flexbox 的 gap 調整，避免空白過大 */
+            .header-content {
+                gap: 10px;
             }
         }
     </style>
@@ -112,13 +130,14 @@
 
     <div class="resume-container">
 
-        <img id="profile-pic" src="avatar.jpg" alt="詹芷綺個人照片">
-
-        <section class="section header">
-            <h1>詹芷綺</h1>
-            <p><strong>Email:</strong> niw29708@gmail.com</p>
-            <p><strong>科系:</strong> 亞大經管系</p>
-        </section>
+        <div class="header-content">
+            <div class="header-info">
+                <h1>詹芷綺</h1>
+                <p><strong>Email:</strong> niw29708@gmail.com</p>
+                <p><strong>科系:</strong> 亞大經管系</p>
+            </div>
+            <img id="profile-pic" src="avatar.jpg" alt="詹芷綺個人照片">
+        </div>
 
         <section class="section education">
             <h2>學歷</h2>
