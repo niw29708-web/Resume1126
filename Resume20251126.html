@@ -19,7 +19,8 @@
         }
 
         .resume-container {
-            max-width: 800px;
+            /* 增大 max-width 讓內容更緊湊，方便單頁輸出 */
+            max-width: 850px;
             margin: 40px auto;
             padding: 30px;
             background-color: #fff;
@@ -46,7 +47,6 @@
 
         ul {
             list-style: disc;
-            /* 改回圓點，讓經歷更清晰 */
             padding-left: 20px;
         }
 
@@ -54,12 +54,10 @@
             margin-bottom: 10px;
         }
 
-        /* 自我簡介樣式 */
         .self-introduction {
             margin-top: 15px;
             padding: 15px;
             background-color: #f0f8ff;
-            /* 淺藍色背景，讓簡介更突出 */
             border-left: 5px solid #4a90e2;
         }
 
@@ -78,11 +76,10 @@
         /* === 照片 (頭像) 樣式 - 長方形設定 === */
         /* ------------------------------------------------- */
         #profile-pic {
-            /* 圖片來源為 avatar.jpg，請確保檔案存在且檔名正確 */
             width: 120px;
             height: 160px;
             object-fit: contain;
-            /* 使用 contain 避免裁剪 */
+            /* 確保圖片不被裁剪 */
             border-radius: 8px;
             border: 2px solid #4a90e2;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -90,6 +87,7 @@
 
         /* ================================================= */
         /* === 列印/PDF 樣式優化 === */
+        /* 由於要單頁輸出，我們主要透過 JS 設定，這裡僅隱藏按鈕 */
         /* ================================================= */
         @media print {
             body {
@@ -107,14 +105,11 @@
                 display: none !important;
             }
 
-            .section {
-                page-break-after: auto !important;
-                page-break-before: auto !important;
-            }
-
             .header-content {
                 gap: 10px;
             }
+
+            /* 故意移除所有分頁控制，讓 html2pdf 決定 */
         }
     </style>
 </head>
@@ -182,8 +177,9 @@
             const opt = {
                 margin: 0.5,
                 filename: '詹芷綺_個人履歷.pdf',
-                pagebreak: { mode: ['css', 'legacy'] },
-                image: { type: 'jpeg', quality: 0.98 },
+                // **關鍵設定：強制內容適應單頁**
+                // 設置為 'in' (英寸) 和 format: 'a4' 是標準格式
+                // 移除 pagebreak 設定，讓內容盡量放在一頁
                 html2canvas: { scale: 2 },
                 jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
             };
