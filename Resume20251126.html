@@ -7,11 +7,14 @@
     <title>個人履歷表 - 詹芷綺</title>
     <style>
         /* ================================================= */
-        /* === 履歷表排版與基本樣式 === */
+        /* === 履歷表排版與單頁優化樣式 (Step 1) === */
         /* ================================================= */
         body {
+            /* 縮小基礎字體大小 */
+            font-size: 14px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            line-height: 1.5;
+            /* 縮小行高 */
             margin: 0;
             padding: 0;
             background-color: #f4f7f6;
@@ -19,10 +22,11 @@
         }
 
         .resume-container {
-            /* 增大 max-width 讓內容更緊湊，方便單頁輸出 */
             max-width: 850px;
-            margin: 40px auto;
-            padding: 30px;
+            /* 縮小頂部和底部邊距 */
+            margin: 20px auto;
+            /* 縮小左右內邊距 */
+            padding: 20px;
             background-color: #fff;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: relative;
@@ -41,8 +45,9 @@
             color: #555;
             border-bottom: 1px solid #ddd;
             padding-bottom: 5px;
-            margin-top: 25px;
-            margin-bottom: 15px;
+            /* 調整標題間距 */
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
 
         ul {
@@ -51,12 +56,14 @@
         }
 
         li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            /* 縮小列表間距 */
         }
 
         .self-introduction {
-            margin-top: 15px;
-            padding: 15px;
+            /* 調整自我簡介間距 */
+            margin-top: 10px;
+            padding: 10px;
             background-color: #f0f8ff;
             border-left: 5px solid #4a90e2;
         }
@@ -65,21 +72,18 @@
             display: flex;
             align-items: center;
             gap: 30px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            /* 縮小頭部間距 */
         }
 
         .header-info {
             flex-grow: 1;
         }
 
-        /* ------------------------------------------------- */
-        /* === 照片 (頭像) 樣式 - 長方形設定 === */
-        /* ------------------------------------------------- */
         #profile-pic {
             width: 120px;
             height: 160px;
             object-fit: contain;
-            /* 確保圖片不被裁剪 */
             border-radius: 8px;
             border: 2px solid #4a90e2;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -87,7 +91,6 @@
 
         /* ================================================= */
         /* === 列印/PDF 樣式優化 === */
-        /* 由於要單頁輸出，我們主要透過 JS 設定，這裡僅隱藏按鈕 */
         /* ================================================= */
         @media print {
             body {
@@ -98,7 +101,8 @@
             .resume-container {
                 margin: 0;
                 box-shadow: none;
-                padding: 0.5in;
+                padding: 0.3in;
+                /* 縮小列印邊距 */
             }
 
             #download-btn {
@@ -108,8 +112,6 @@
             .header-content {
                 gap: 10px;
             }
-
-            /* 故意移除所有分頁控制，讓 html2pdf 決定 */
         }
     </style>
 </head>
@@ -175,11 +177,9 @@
         function downloadPDF() {
             const element = document.querySelector('.resume-container');
             const opt = {
-                margin: 0.5,
+                // **關鍵調整：縮小 PDF 輸出邊距**
+                margin: 0.3,
                 filename: '詹芷綺_個人履歷.pdf',
-                // **關鍵設定：強制內容適應單頁**
-                // 設置為 'in' (英寸) 和 format: 'a4' 是標準格式
-                // 移除 pagebreak 設定，讓內容盡量放在一頁
                 html2canvas: { scale: 2 },
                 jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
             };
