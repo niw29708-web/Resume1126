@@ -25,7 +25,6 @@
             background-color: #fff;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: relative;
-            /* 讓子元素的定位相對它 */
         }
 
         h1 {
@@ -34,9 +33,7 @@
             padding-bottom: 10px;
             margin-bottom: 5px;
             display: inline-block;
-            /* 讓 h1 寬度只包住內容，方便圖片並排 */
             vertical-align: middle;
-            /* 讓 h1 和圖片在同一行居中對齊 */
         }
 
         h2 {
@@ -48,47 +45,47 @@
         }
 
         ul {
-            list-style: none;
-            padding-left: 0;
+            list-style: disc;
+            /* 改回圓點，讓經歷更清晰 */
+            padding-left: 20px;
         }
 
         li {
             margin-bottom: 10px;
         }
 
+        /* 自我簡介樣式 */
+        .self-introduction {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            /* 淺藍色背景，讓簡介更突出 */
+            border-left: 5px solid #4a90e2;
+        }
+
         .header-content {
             display: flex;
-            /* 使用 Flexbox 布局 */
             align-items: center;
-            /* 垂直居中對齊 */
             gap: 30px;
-            /* 元素之間的間距增加，讓照片有更多空間 */
             margin-bottom: 20px;
         }
 
         .header-info {
             flex-grow: 1;
-            /* 讓個人資訊區塊盡量佔據剩餘空間 */
         }
 
         /* ------------------------------------------------- */
-        /* === 照片 (頭像) 樣式 - 已修改為長方形 === */
+        /* === 照片 (頭像) 樣式 - 長方形設定 === */
         /* ------------------------------------------------- */
         #profile-pic {
             /* 圖片來源為 avatar.jpg，請確保檔案存在且檔名正確 */
-            /* 設定為長方形 */
-            width: 100px;
-            /* 寬度可以根據原始照片比例調整 */
-            height: 130px;
-            /* 高度可以根據原始照片比例調整 */
-            /* 確保照片填滿容器且不變形 */
-            object-fit: cover;
-            /* 輕微圓角，更柔和 */
+            width: 120px;
+            height: 160px;
+            object-fit: contain;
+            /* 使用 contain 避免裁剪 */
             border-radius: 8px;
             border: 2px solid #4a90e2;
-            /* 邊框 */
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            /* 輕微陰影 */
         }
 
         /* ================================================= */
@@ -104,21 +101,17 @@
                 margin: 0;
                 box-shadow: none;
                 padding: 0.5in;
-                /* 增加邊距以優化列印 */
             }
 
-            /* 隱藏 PDF 下載按鈕 */
             #download-btn {
                 display: none !important;
             }
 
-            /* 確保內容在同一頁輸出 */
             .section {
                 page-break-after: auto !important;
                 page-break-before: auto !important;
             }
 
-            /* 列印時移除 Flexbox 的 gap 調整，避免空白過大 */
             .header-content {
                 gap: 10px;
             }
@@ -144,7 +137,7 @@
             <ul>
                 <li>
                     <strong>草屯商工</strong> (畢業)
-                    <p>主修資訊管理</p>
+                    <p>主修**商業管理科**</p>
                 </li>
                 <li>
                     <strong>亞洲大學</strong> (在學中)
@@ -153,23 +146,26 @@
             </ul>
         </section>
 
+        <section class="self-introduction">
+            <p>
+                我是詹芷綺，曾就讀草屯商工商業管理科，目前於亞洲大學經營與管理學系就讀。
+                在學期間培養了良好的文書處理能力與資料整理習慣，也具備基礎的企劃撰寫與團隊協作經驗。
+                我做事細心、學習速度快，喜歡挑戰新事物並持續提升自己，希望能在未來的實習或職涯中發揮所長，累積更多實務經驗。
+            </p>
+        </section>
+
         <section class="section experience">
             <h2>經歷</h2>
             <ul>
-                <li>
-                    <strong>[公司/組織名稱] - [職位]</strong> | [起始日期] - [結束日期]
-                    <p>簡要描述您的工作內容和成就，例如：</p>
-                    <ul>
-                        <li>負責 XXX 專案，有效提升 X% 效率。</li>
-                        <li>協助部門 YYY 事務處理，獲得 ZZZ 肯定。</li>
-                    </ul>
-                </li>
+                <li>熟悉行銷規劃、學習會計與成本概念。</li>
+                <li>熟悉 Office 文書軟體（Word、Excel、PowerPoint），能高效完成資料整理與文件製作。</li>
+                <li>擔任班級幹部協助活動規劃與執行，培養溝通協作能力。</li>
             </ul>
         </section>
 
         <section class="section skills">
             <h2>專業技能</h2>
-            <p>HTML, CSS, JavaScript, Git/版本控制, 專案管理, Microsoft Office, ...</p>
+            <p>HTML, CSS, Git/版本控制, 企劃撰寫, 溝通協作, Office 文書軟體 (Word/Excel/PowerPoint)</p>
         </section>
 
     </div>
@@ -182,7 +178,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
         function downloadPDF() {
-            const element = document.querySelector('.resume-container'); // 僅選擇履歷容器
+            const element = document.querySelector('.resume-container');
             const opt = {
                 margin: 0.5,
                 filename: '詹芷綺_個人履歷.pdf',
