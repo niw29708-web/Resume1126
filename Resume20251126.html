@@ -7,14 +7,14 @@
     <title>個人履歷表 - 詹芷綺</title>
     <style>
         /* ================================================= */
-        /* === 履歷表排版與極限單頁優化樣式 === */
+        /* === 履歷表排版與寬鬆樣式優化 === */
         /* ================================================= */
         body {
-            font-size: 13px;
-            /* 進一步縮小基礎字體大小 */
+            /* 字體大小調整回 14px，略微增大 */
+            font-size: 14px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.4;
-            /* 進一步縮小行高 */
+            line-height: 1.6;
+            /* 恢復正常行高 */
             margin: 0;
             padding: 0;
             background-color: #f4f7f6;
@@ -22,11 +22,11 @@
         }
 
         .resume-container {
-            max-width: 850px;
-            margin: 10px auto;
-            /* 頂部和底部邊距極小化 */
-            padding: 15px 20px;
-            /* 內邊距極小化 */
+            max-width: 800px;
+            /* 恢復標準最大寬度 */
+            /* 恢復較大的邊距，讓內容看起來不那麼擠 */
+            margin: 30px auto;
+            padding: 25px 30px;
             background-color: #fff;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: relative;
@@ -35,10 +35,8 @@
         h1 {
             color: #4a90e2;
             border-bottom: 3px solid #4a90e2;
-            padding-bottom: 5px;
-            /* 縮小底部間距 */
-            margin-bottom: 0px;
-            /* 移除底部外邊距 */
+            padding-bottom: 8px;
+            margin-bottom: 5px;
             display: inline-block;
             vertical-align: middle;
         }
@@ -46,39 +44,36 @@
         h2 {
             color: #555;
             border-bottom: 1px solid #ddd;
-            padding-bottom: 3px;
-            /* 縮小底部間距 */
-            margin-top: 15px;
-            /* 縮小頂部間距 */
-            margin-bottom: 5px;
-            /* 縮小底部間距 */
+            padding-bottom: 5px;
+            margin-top: 25px;
+            /* 恢復較大間距 */
+            margin-bottom: 15px;
+            /* 恢復較大間距 */
         }
 
         ul {
             list-style: disc;
             padding-left: 20px;
-            margin-top: 5px;
-            /* 縮小頂部間距 */
+            margin-top: 0;
             margin-bottom: 0;
-            /* 移除底部間距 */
         }
 
         li {
-            margin-bottom: 5px;
-            /* 縮小列表間距 */
+            margin-bottom: 8px;
         }
 
-        /* 針對學歷資訊的 <p> 標籤進行精簡 */
+        /* 針對學歷資訊的 <p> 標籤進行調整 */
         .education p {
             margin-top: 0px;
             margin-bottom: 5px;
-            line-height: 1.2;
-            /* 極端壓縮行高 */
+            line-height: 1.4;
+            /* 恢復正常行高 */
         }
 
         .self-introduction {
-            margin-top: 10px;
-            padding: 10px;
+            margin-top: 20px;
+            /* 增大與學歷的間距 */
+            padding: 15px;
             background-color: #f0f8ff;
             border-left: 5px solid #4a90e2;
         }
@@ -86,17 +81,15 @@
         .header-content {
             display: flex;
             align-items: center;
-            gap: 20px;
-            /* 縮小間距 */
-            margin-bottom: 10px;
-            /* 縮小頭部間距 */
+            gap: 30px;
+            margin-bottom: 20px;
         }
 
-        /* 移除聯絡資訊的額外行高 */
+        /* 恢復聯絡資訊的行高，增加空間感 */
         .header-info p {
             margin: 0;
-            padding: 0;
-            line-height: 1.2;
+            padding: 2px 0;
+            line-height: 1.5;
         }
 
         #profile-pic {
@@ -108,5 +101,115 @@
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
+        /* 技能列表的 <p> 標籤行距調整，避免太擁擠 */
+        .skills p {
+            line-height: 1.8;
+        }
+
         /* ================================================= */
-        /* === 列印/PDF
+        /* === 列印/PDF 樣式優化 === */
+        /* ================================================= */
+        @media print {
+            body {
+                background-color: #fff;
+                margin: 0;
+            }
+
+            .resume-container {
+                margin: 0;
+                box-shadow: none;
+                padding: 0.5in;
+                /* 恢復較大的列印邊距 */
+            }
+
+            #download-btn {
+                display: none !important;
+            }
+
+            .header-content {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="resume-container">
+
+        <div class="header-content">
+            <div class="header-info">
+                <h1>詹芷綺</h1>
+                <p><strong>Email:</strong> niw29708@gmail.com</p>
+                <p><strong>科系:</strong> 亞大經管系</p>
+            </div>
+            <img id="profile-pic" src="avatar.jpg" alt="詹芷綺個人照片">
+        </div>
+
+        <section class="section education">
+            <h2>學歷</h2>
+            <ul>
+                <li>
+                    <strong>草屯商工</strong> (畢業)
+                    <p>主修**商業管理科**</p>
+                </li>
+                <li>
+                    <strong>亞洲大學</strong> (在學中)
+                    <p>經營管理學系</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="self-introduction">
+            <p>
+                我是詹芷綺，曾就讀草屯商工商業管理科，目前於亞洲大學經營與管理學系就讀。
+                在學期間培養了良好的文書處理能力與資料整理習慣，也具備基礎的企劃撰寫與團隊協作經驗。
+                我做事細心、學習速度快，喜歡挑戰新事物並持續提升自己，希望能在未來的實習或職涯中發揮所長，累積更多實務經驗。
+            </p>
+        </section>
+
+        <section class="section experience">
+            <h2>經歷</h2>
+            <ul>
+                <li>熟悉行銷規劃、學習會計與成本概念。</li>
+                <li>熟悉 Office 文書軟體（Word、Excel、PowerPoint），能高效完成資料整理與文件製作。</li>
+                <li>擔任班級幹部協助活動規劃與執行，培養溝通協作能力。</li>
+            </ul>
+        </section>
+
+        <section class="section skills">
+            <h2>專業技能</h2>
+            <p>
+                HTML, CSS, Git/版本控制, 企劃撰寫, 溝通協作,
+                基礎 Python（資料處理 pandas）, 商業模式分析（Business Model Canvas）,
+                營運管理與流程規劃, 顧客關係管理 (CRM),
+                Office 文書軟體 (Word/Excel/PowerPoint)
+            </p>
+        </section>
+
+    </div>
+
+
+    <button id="download-btn" onclick="downloadPDF()"
+        style="position:fixed; bottom:20px; right:20px; padding:10px 20px; background:#4a90e2; color:white; border:none; border-radius:8px; cursor:pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.15);">下載
+        PDF</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        function downloadPDF() {
+            const element = document.querySelector('.resume-container');
+            const opt = {
+                // 恢復較大的邊距設定，讓排版看起來更寬鬆
+                margin: 0.5,
+                filename: '詹芷綺_個人履歷.pdf',
+                // 關鍵設定：移除 pagebreak 設定，讓內容在單頁 A4 範圍內自動排版
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+
+</body>
+
+</html>
